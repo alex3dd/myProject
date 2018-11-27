@@ -1,29 +1,11 @@
-pipeline {
-  agent { label 'linux' }
-  tools {
-    maven 'M3'
-  }
-  stages {
-    stage('checkout') {
-      steps {
-        git 'https://github.com/effectivejenkins/myProject.git'
-      }
-    }
-    stage('Build') {
-      steps {
-        sh 'mvn clean compile'
-      }
-    }
-    stage('Test') {
-      steps {
-        sh 'mvn test'
-        junit '**/target/surefire-reports/TEST-*.xml'
-      }
-    }
-    stage('Package') {
-      steps {
-        sh 'mvn package'
-      }
-    }
+pipeline{
+  agent { label 'beanstalk'}
+  stages{
+    stage('Hello From Github'){
+	   steps{
+	       echo "Print a message after the build."
+		   script{ for (int i=0; i<5;++i) { echo "Hello World ${i}" } }
+	   }
+	}
   }
 }
