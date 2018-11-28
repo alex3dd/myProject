@@ -1,7 +1,7 @@
 pipeline{
   agent { label 'beanstalk'}
   tools{
-    maven 'M3'
+    maven 'M2'
   }
   
   stages{
